@@ -1,0 +1,8 @@
+._*
+.nf*
+.DS*
+p
+*.a
+*.o
+.*
+!.gitignore
