@@ -6,11 +6,12 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/13 15:26:34 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/13 20:12:39 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	print_char(t_env *m)
 {
@@ -20,12 +21,77 @@ void	print_char(t_env *m)
 	m->result += write(1, &c, 1);
 }
 
+void	print_str(t_env *m)
+{
+	char	*s;
+
+	s = va_arg(m->arg, char*);
+	m->result += write(1, s, ft_strlen(s));
+}
+
+void	print_dec(t_env *m)
+{
+	int		i;
+	int		d;
+	char	*tmp;
+	char	*dec;
+	char	*ret;
+
+	i = -1;
+	d = va_arg(m->arg, int);
+	if (m->flag.width)
+	{
+		tmp = ft_strnew(m->flag.width);
+		while (++i < m->flag.width)
+			tmp[i] = ' ';
+	}
+	dec = ft_itoa(d);
+	if (m->flag.minus == 1)
+	{
+		ret = ft_strjoin(dec, tmp);
+		ret = ft_strsub(ret, 0, m->flag.width);
+	}
+	m->result += write(1, ret, ft_strlen(ret));
+}
+
 void	check_specifier(const char *fmt, t_env *m)
 {
 	if (ft_strchr(&fmt[m->i], 'c'))
 		print_char(m);
-	//if (ft_strchr(&fmt[m->i], 's'))
-	//	print_str(m);
+	if (ft_strchr(&fmt[m->i], 's'))
+		print_str(m);
+	if (ft_strchr(&fmt[m->i], 'd'))
+		print_dec(m);
+}
+
+void	check_flag(const char *fmt, t_env *m)
+{
+	if (ft_strchr(&fmt[m->i], '-'))
+	{
+		m->flag.width = ft_atoi(&fmt[m->i + 1]);
+		m->flag.minus = 1;
+	}
+	if (ft_strchr(&fmt[m->i], '+'))
+		m->flag.plus = 1;
+	if (ft_strchr(&fmt[m->i], '#'))
+		m->flag.hash = 1;
+	if (ft_strchr(&fmt[m->i], '0'))
+		m->flag.zero = 1;
+	if (ft_strchr(&fmt[m->i], ' '))
+		m->flag.space = 1;
+	if (ft_strchr(WIDTH, fmt[m->i]))
+		m->flag.width = ft_atoi(&fmt[m->i]);
+}
+
+void	init_env(t_env *m)
+{
+	m->i = -1;
+	m->flag.width = 0;
+	m->flag.minus = 0;
+	m->flag.plus = 0;
+	m->flag.hash = 0;
+	m->flag.zero = 0;
+	m->flag.space = 0;
 }
 
 int		ft_printf(const char *fmt, ...)
@@ -33,12 +99,22 @@ int		ft_printf(const char *fmt, ...)
 	t_env		m;
 
 	ft_bzero(&m, sizeof(t_env));
-	m.i = -1;
+	init_env(&m);
 	va_start (m.arg, fmt);
 	while (fmt[++(m.i)] != '\0')
 	{
-		if (fmt[m.i] == '%')
-			check_specifier(&fmt[(m.i)++], &m);
+		if (fmt[m.i] == '%' && fmt[(m.i) + 1] == '%')
+			m.result += write(1, "%", 1);
+		if (fmt[m.i] == '%' && fmt[(m.i) + 1] != '%')
+		{
+			check_flag(&fmt[(m.i) + 1], &m);
+			check_specifier(&fmt[(m.i) + 1], &m);
+		}
+		if (ft_strchr(&fmt[m.i], '\n'))
+		{
+			m.result += write(1, "\n", 1);
+			break;
+		}
 	}
 	va_end(m.arg);
 	return (m.result);
