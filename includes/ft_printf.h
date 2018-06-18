@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 13:38:56 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/13 19:11:03 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/17 15:40:13 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdarg.h>
 # include "libft.h"
 # define WIDTH "123456789*"
+# define FLAG "-+#0 "
 typedef struct		s_flag
 {
 	int				width;

@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 16:09:01 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/14 21:32:41 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/17 18:31:01 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,35 @@ int		main(void)
 	x = 2;
 	ptr = &x;
 
-//	printf("%c\n", c[1]);
+//	printf("%4c\n", c[1]);
 //	ft_printf("%c\n", c[1]);
-//	printf("%s\n", c);
-//	ft_printf("%s\n", c);
+//	printf("%5c\n", c[1]);
+//	ft_printf("%53c\n", c[1]);
+//	printf("%-7c\n", c[1]);
+//	ft_printf("%28c", c[1]);
+//	printf("sdfsdf\n");
+//	printf("%+-10d\n", 10);
+//	printf("%05s\n", c);
+//	ft_printf("%-10s\n", c);
 //	printf("%%\n");
 //	ft_printf("%%\n");
-//	printf("%d\n", 1124);
-//	ft_printf("%3d", 11);
-//	printf("sdfsdf\n");
-	printf("%-d", 123);
+	printf("%3d\n", 11);
+	ft_printf("%3d\n", 11);
+	printf("%-3d", 123);
 	printf("sdfsdf\n");
-	printf("%-7d", 123);
+	ft_printf("%-3d", 123);
 	printf("sdfsdf\n");
-	printf("%+5d\n", 123);
-//	printf("%#d", 123);
-	printf("%09d\n", 123);
+	printf("%-05d", 123);
+	printf("sdfsdf\n");
+	ft_printf("%-05d", 123);
+	printf("sdfsdf\n\n\n\n\n");
+	printf("%+d\n", 123);
+	printf("%+d\n", -123);
+	printf("% d\n", 123);
 	printf("% d\n", -123);
-//	printf("% c\n", c[1]);
-//	printf("%u\n", -1234);
-//	printf("%u\n", 1234);
+	printf("%+ 8d\n", 123);
+	printf("%+ 8d\n", -123);
+	printf("% 8d\n", 123);
+	printf("% 8d\n", -123);
 	return (0);
 }
