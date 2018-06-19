@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/17 19:05:43 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/18 17:56:24 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	print_str(t_env *m)
 	}
 }
 
-void	print_paddr(t_env *m)
+/*void	print_paddr(t_env *m)
 {
 	char	*p;
 	char	tmp;
@@ -74,20 +74,19 @@ void	print_paddr(t_env *m)
 
 	p = va_arg(m->arg, char*);
 
-}
+}*/
+
 void	print_dec(t_env *m)
 {
 	/*
-	**flag '0' is ignored when flag '-' is present
-	**flag ' ' is ignored when flag '+' is present
-	*/
-	int		i;
+	 **flag '0' is ignored when flag '-' is present
+	 **flag ' ' is ignored when flag '+' is present
+	 */
 	int		d;
 	char	*dec;
 	char	tmp;
 	int		len;
 
-	i = -1;
 	d = va_arg(m->arg, int);
 	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
 	dec = ft_itoa(d);
@@ -122,6 +121,47 @@ void	print_dec(t_env *m)
 	}
 }
 
+/*void	print_unint(t_env *m)
+{
+	int		u;
+	char	*dec;
+	char	tmp;
+	int		len;
+
+	u = va_arg(m->arg, int);
+	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
+	dec = ft_itoa(d);
+	if (m->flag.plus == 1)
+		dec = ft_strjoin("+", dec);
+	if (m->flag.space == 1)
+	{
+		if (!ft_strchr(dec, '-'))
+			dec = ft_strjoin(" ", dec);
+	}
+	len = m->flag.width - ft_strlen(dec);
+	if (m->flag.minus == 1)
+	{
+		tmp = ' ';
+		m->result += write(1, dec, ft_strlen(dec));
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+		}
+	}
+	else
+	{
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+			m->result += write(1, dec, ft_strlen(dec));
+		}	
+		else
+			m->result += write(1, dec, ft_strlen(dec));
+	}
+}*/
+
 void	check_specifier(const char *fmt, t_env *m)
 {
 	if (ft_strchr(&fmt[m->i], 'c'))
@@ -130,10 +170,10 @@ void	check_specifier(const char *fmt, t_env *m)
 		print_str(m);
 	else if (ft_strchr(&fmt[m->i], 'd') || ft_strchr(&fmt[m->i], 'i'))
 		print_dec(m);
-	if (ft_strchr(&fmt[m->i], 'p'))
+	if (ft_strchr(&fmt[m->i], 'u'))
+		print_unint(m);
+	/*if (ft_strchr(&fmt[m->i], 'p'))
 	  print_paddr;
-	/*  if (ft_strchr(&fmt[m->i], 'u'))
-	  print_unint;
 	  if (ft_strchr(&fmt[m->i], 'o'))
 	  print_oct;
 	  if (ft_strchr(&fmt[m->i], 'x') || ft_strchr(&fmt[m->i], 'X'))
