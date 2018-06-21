@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 01:10:49 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/13 14:55:43 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/21 16:33:01 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "ft_printf.h"
 
 typedef struct		s_list
@@ -96,4 +97,7 @@ int					ft_wdcount(char *str, char c);
 int					get_next_line(const int fd, char **line);
 int					ft_atoi_base(const char *str, int base);
 int					ft_rgb(int r, int g, int b);
+char				*ft_itoa_base(int n, int base);
+char				*ft_ltoa(long n);
+char				*ft_ltoa_base(long n, int base);
 #endif

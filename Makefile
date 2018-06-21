@@ -6,7 +6,7 @@
 #    By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/29 17:16:50 by ksonu             #+#    #+#              #
-#    Updated: 2018/06/13 18:48:24 by ksonu            ###   ########.fr        #
+#    Updated: 2018/06/21 16:29:49 by ksonu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,10 @@ LIBSRC = ft_memset.c		\
 		ft_wdcount.c	\
 		get_next_line.c	\
 		ft_atoi_base.c	\
-		ft_rgb.c
+		ft_rgb.c		\
+		ft_itoa_base.c	\
+		ft_ltoa.c		\
+		ft_ltoa_base.c
 
 SRCS = $(addprefix srcs/, $(SRC))
 LIBSRCS = $(addprefix libft/, $(LIBSRC))

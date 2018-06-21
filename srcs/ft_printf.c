@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/18 17:56:24 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/21 16:25:44 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,28 +121,21 @@ void	print_dec(t_env *m)
 	}
 }
 
-/*void	print_unint(t_env *m)
+void	print_unint(t_env *m)
 {
-	int		u;
-	char	*dec;
+	long		u;
+	char	*unint;
 	char	tmp;
 	int		len;
 
-	u = va_arg(m->arg, int);
+	u = va_arg(m->arg, long);
 	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
-	dec = ft_itoa(d);
-	if (m->flag.plus == 1)
-		dec = ft_strjoin("+", dec);
-	if (m->flag.space == 1)
-	{
-		if (!ft_strchr(dec, '-'))
-			dec = ft_strjoin(" ", dec);
-	}
-	len = m->flag.width - ft_strlen(dec);
+	unint = ft_itoa_base(u, 10);
+	len = m->flag.width - ft_strlen(unint);
 	if (m->flag.minus == 1)
 	{
 		tmp = ' ';
-		m->result += write(1, dec, ft_strlen(dec));
+		m->result += write(1, unint, ft_strlen(unint));
 		if (len > 0)
 		{
 			while (len-- > 0)
@@ -155,12 +148,12 @@ void	print_dec(t_env *m)
 		{
 			while (len-- > 0)
 				m->result += write(1, &tmp, 1);
-			m->result += write(1, dec, ft_strlen(dec));
+			m->result += write(1, unint, ft_strlen(unint));
 		}	
 		else
-			m->result += write(1, dec, ft_strlen(dec));
+			m->result += write(1, unint, ft_strlen(unint));
 	}
-}*/
+}
 
 void	check_specifier(const char *fmt, t_env *m)
 {
