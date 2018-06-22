@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 16:09:01 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/21 18:24:37 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/21 19:33:44 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,33 @@ int		main(void)
 //	printf("%+ 8d\n", -123);
 //	printf("% 8d\n", 123);
 //	printf("% 8d\n", -123);
-//
+
+	printf("%.20d\n", 123);
+	printf("%.20d\n", -123);
+	printf("%-2.20d\n", 123);
+	printf("%-2.20d\n", -123);
+	printf("%+2.20d\n", 123);
+	printf("%+2.20d\n", -123);
+	printf("%#2.20d\n", 123);
+	printf("%#2.20d\n", -123);
+	printf("%012.20d\n", 123);
+	printf("%012.20d\n", -123);
+	printf("% 12.20d\n", 123);
+	printf("% 12.20d\n", -123);
+	ft_putstr("----------------\n");
+//	ft_printf("%u\n", 123);
+//	ft_printf("%u\n", -123);
+//	ft_printf("%-5u\n", 123);
+//	ft_printf("%-5u\n", -123);
+//	ft_printf("%+5u\n", 123);
+//	ft_printf("%+5u\n", -123);
+//	ft_printf("%#5u\n", 123);
+//	ft_printf("%#5u\n", -123);
+//	ft_printf("%05u\n", 123);
+//	ft_printf("%05u\n", -123);
+//	ft_printf("% 5u\n", 123);
+//	ft_printf("% 5u\n", -123);
+
 //	printf("%u\n", 123);
 //	printf("%u\n", -123);
 //	printf("%-5u\n", 123);
@@ -105,31 +131,31 @@ int		main(void)
 //	ft_printf("% 5o\n", 123);
 //	ft_printf("% 5o\n", -123);
 
-	printf("%x\n", 123);
-	printf("%x\n", -123);
-	printf("%-5x\n", 123);
-	printf("%-5x\n", -123);
-	printf("%+5x\n", 123);
-	printf("%+5x\n", -123);
-	printf("%#5x\n", 123);
-	printf("%#5x\n", -123);
-	printf("%05x\n", 123);
-	printf("%05x\n", -123);
-	printf("% 5x\n", 123);
-	printf("% 5x\n", -123);
-	ft_putstr("----------------\n");
-	ft_printf("%x\n", 123);
-	ft_printf("%x\n", -123);
-	ft_printf("%-5x\n", 123);
-	ft_printf("%-5x\n", -123);
-	ft_printf("%+5x\n", 123);
-	ft_printf("%+5x\n", -123);
-	ft_printf("%#5x\n", 123);
-	ft_printf("%#5x\n", -123);
-	ft_printf("%05x\n", 123);
-	ft_printf("%05x\n", -123);
-	ft_printf("% 5x\n", 123);
-	ft_printf("% 5x\n", -123);
+//	printf("%x\n", 123);
+//	printf("%x\n", -123);
+//	printf("%-5x\n", 123);
+//	printf("%-5x\n", -123);
+//	printf("%+5x\n", 123);
+//	printf("%+5x\n", -123);
+//	printf("%#5x\n", 123);
+//	printf("%#5x\n", -123);
+//	printf("%05x\n", 123);
+//	printf("%05x\n", -123);
+//	printf("% 5x\n", 123);
+//	printf("% 5x\n", -123);
+//	ft_putstr("----------------\n");
+//	ft_printf("%x\n", 123);
+//	ft_printf("%x\n", -123);
+//	ft_printf("%-5x\n", 123);
+//	ft_printf("%-5x\n", -123);
+//	ft_printf("%+5x\n", 123);
+//	ft_printf("%+5x\n", -123);
+//	ft_printf("%#5x\n", 123);
+//	ft_printf("%#5x\n", -123);
+//	ft_printf("%05x\n", 123);
+//	ft_printf("%05x\n", -123);
+//	ft_printf("% 5x\n", 123);
+//	ft_printf("% 5x\n", -123);
 	
 //	printf("%p\n", ptr);
 //	printf("%p\n", ptr);

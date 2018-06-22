@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/21 18:23:44 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/21 19:35:35 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,6 +319,21 @@ void	check_flag(const char *fmt, t_env *m)
 	}
 }
 
+void	check_precision(const char *fmt, t_env *m)
+{
+	m->i++;
+	while (fT_strchr(WIDTH, fmt[m->i]))
+	{
+		m->flag.precision = ft_atoi(fmt[m->i]);
+		m->i++;
+	}
+}
+
+void	check_length(const char *fmt, t_env *m)
+{
+
+}
+
 void	init_env(t_env *m)
 {
 	m->i = -1;
@@ -348,9 +363,10 @@ int		ft_printf(const char *fmt, ...)
 			{
 				m.flag.width = ft_atoi(&fmt[m.i]);
 				m.i++;
-				//printf("width[%d] m.i[%d]\n", m.flag.width, m.i);
 			}
-			//printf("fmt[%d] = [%c]\n", m.i, fmt[m.i]);
+			if (fmt[m.i] == '.')
+				check_precision(fmt, &m);
+			check_length(fmt, &m);
 			check_specifier(fmt, &m);
 		}
 		if (ft_strchr(&fmt[m.i], '\n'))

@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 13:38:56 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/18 17:56:26 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/21 19:27:19 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_flag
 	int				hash;
 	int				zero;
 	int				space;
+	int				precision;
 }					t_flag;
 
 typedef struct		s_env
