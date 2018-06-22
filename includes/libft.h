@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 01:10:49 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/21 16:33:01 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/21 17:45:00 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,5 @@ int					ft_rgb(int r, int g, int b);
 char				*ft_itoa_base(int n, int base);
 char				*ft_ltoa(long n);
 char				*ft_ltoa_base(long n, int base);
+char				*ft_strlower(char *str);
 #endif

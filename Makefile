@@ -6,13 +6,13 @@
 #    By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/29 17:16:50 by ksonu             #+#    #+#              #
-#    Updated: 2018/06/21 16:29:49 by ksonu            ###   ########.fr        #
+#    Updated: 2018/06/21 17:45:16 by ksonu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =  ft_printf.c
 
-LIBSRC = ft_memset.c		\
+LIBSRC = ft_memset.c	\
 		ft_bzero.c		\
 		ft_memcpy.c		\
 		ft_memccpy.c	\
@@ -82,7 +82,8 @@ LIBSRC = ft_memset.c		\
 		ft_rgb.c		\
 		ft_itoa_base.c	\
 		ft_ltoa.c		\
-		ft_ltoa_base.c
+		ft_ltoa_base.c	\
+		ft_strlower.c
 
 SRCS = $(addprefix srcs/, $(SRC))
 LIBSRCS = $(addprefix libft/, $(LIBSRC))

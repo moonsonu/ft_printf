@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/21 16:25:44 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/21 18:23:44 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	print_str(t_env *m)
 
 	s = va_arg(m->arg, char*);
 	len = m->flag.width - ft_strlen(s);
-	printf("len[%d]\n", len);
 	tmp = ' ';
 	if (m->flag.minus == 1)
 	{
@@ -66,15 +65,46 @@ void	print_str(t_env *m)
 	}
 }
 
-/*void	print_paddr(t_env *m)
+void	print_paddr(t_env *m)
 {
-	char	*p;
+	/*
+	**flag '+' results in undefined behavior with 'p' conversion
+	**flag '#' results in undefined behavior with 'p' conversion
+	**flag '0' results in undefined behavior with 'p' conversion
+	**flag ' ' results in undefined behavior with 'p' conversion
+	*/
+
+	unsigned long	p;
+	char	*addr;
 	char	tmp;
 	int		len;
 
-	p = va_arg(m->arg, char*);
-
-}*/
+	p = va_arg(m->arg, unsigned long);
+	addr = ft_ltoa_base(p, 16);
+	addr = ft_strjoin("0x", ft_strlower(addr));
+	len = m->flag.width - ft_strlen(addr);
+	tmp = ' ';
+	if (m->flag.minus == 1)
+	{
+		m->result += write(1, addr, ft_strlen(addr));
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+		}
+	}
+	else
+	{
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+			m->result += write(1, addr, ft_strlen(addr));
+		}
+		else
+			m->result += write(1, addr, ft_strlen(addr));
+	}
+}
 
 void	print_dec(t_env *m)
 {
@@ -123,14 +153,21 @@ void	print_dec(t_env *m)
 
 void	print_unint(t_env *m)
 {
-	long		u;
+	/*
+	 **flag '+' results in undefined behavior with 'u' conversion
+	 **flag '#' results in undefined behavior with 'u' conversion
+	 **flag ' ' results in undefined behavior with 'u' conversion
+	 */
+	long	u;
 	char	*unint;
 	char	tmp;
 	int		len;
 
 	u = va_arg(m->arg, long);
 	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
-	unint = ft_itoa_base(u, 10);
+	if (u == LLONG_MIN || u == LONG_MIN)
+		unint = ft_strdup("-9223372036854775808");
+	unint = ft_ltoa(u);
 	len = m->flag.width - ft_strlen(unint);
 	if (m->flag.minus == 1)
 	{
@@ -155,6 +192,95 @@ void	print_unint(t_env *m)
 	}
 }
 
+void	print_oct(t_env *m)
+{
+	/*
+	 **flag '+' results in undefined behavior with 'o' conversion
+	 **flag ' ' results in undefined behavior with 'o' conversion
+	 */
+	long	o;
+	char	*oct;
+	char	tmp;
+	int		len;
+
+	o = va_arg(m->arg, long);
+	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
+	oct = ft_ltoa_base(o, 8);
+	len = m->flag.width - ft_strlen(oct);
+	if (m->flag.hash == 1)
+	{
+		len -= 1;
+		oct = ft_strjoin("0", oct);
+	}
+	if (m->flag.minus == 1)
+	{
+		tmp = ' ';
+		m->result += write(1, oct, ft_strlen(oct));
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+		}
+	}
+	else
+	{
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+			m->result += write(1, oct, ft_strlen(oct));
+		}	
+		else
+			m->result += write(1, oct, ft_strlen(oct));
+	}
+}
+
+void	print_hex(const char *fmt, t_env *m)
+{
+	/*
+	 **flag '+' results in undefined behavior with 'u' conversion
+	 **flag ' ' results in undefined behavior with 'u' conversion
+	 */
+	long	h;
+	char	*hex;
+	char	tmp;
+	int		len;
+
+	h = va_arg(m->arg, long);
+	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
+	hex = ft_ltoa_base(h, 16);
+	len = m->flag.width - ft_strlen(hex);
+	if (m->flag.hash == 1)
+	{
+		len -= 2;
+		hex = ft_strjoin("0x", hex);
+	}
+	if (ft_strchr(&fmt[m->i], 'x'))
+		ft_strlower(hex);
+	if (m->flag.minus == 1)
+	{
+		tmp = ' ';
+		m->result += write(1, hex, ft_strlen(hex));
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+		}
+	}
+	else
+	{
+		if (len > 0)
+		{
+			while (len-- > 0)
+				m->result += write(1, &tmp, 1);
+			m->result += write(1, hex, ft_strlen(hex));
+		}	
+		else
+			m->result += write(1, hex, ft_strlen(hex));
+	}
+}
+
+
 void	check_specifier(const char *fmt, t_env *m)
 {
 	if (ft_strchr(&fmt[m->i], 'c'))
@@ -165,12 +291,12 @@ void	check_specifier(const char *fmt, t_env *m)
 		print_dec(m);
 	if (ft_strchr(&fmt[m->i], 'u'))
 		print_unint(m);
-	/*if (ft_strchr(&fmt[m->i], 'p'))
-	  print_paddr;
-	  if (ft_strchr(&fmt[m->i], 'o'))
-	  print_oct;
-	  if (ft_strchr(&fmt[m->i], 'x') || ft_strchr(&fmt[m->i], 'X'))
-	  printf_hex;*/
+	if (ft_strchr(&fmt[m->i], 'p'))
+	  print_paddr(m);
+	if (ft_strchr(&fmt[m->i], 'o') || ft_strchr(&fmt[m->i], 'O'))
+		print_oct(m);
+	if (ft_strchr(&fmt[m->i], 'x') || ft_strchr(&fmt[m->i], 'X'))
+		print_hex(fmt, m);
 }
 
 void	check_flag(const char *fmt, t_env *m)
