@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/21 19:35:35 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/23 21:22:54 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,45 @@ void	print_paddr(t_env *m)
 	}
 }
 
+char	*prep_dec(t_env *m)
+{
+	int		d;
+	int		len;
+	int		pre_len;
+	char	*dec;
+	char	*precision;
+
+	d = va_arg(m->arg, int);
+	dec = ft_itoa(d);
+	if (*dec == '-')
+
+	len = ft_strlen(dec);
+	pre_len = m->flag.precision - len;
+	precision = ft_strnew(pre_len);
+	if (m->flag.precision > 0 || m->flag.precision > len)
+	{
+		while (pre_len-- > 0)
+			precision[pre_len] = '0';
+		dec = ft_strjoin(precision, dec);
+	}
+	return (dec);
+}
+
 void	print_dec(t_env *m)
 {
 	/*
 	 **flag '0' is ignored when flag '-' is present
 	 **flag ' ' is ignored when flag '+' is present
 	 */
-	int		d;
+//	int		d;
 	char	*dec;
 	char	tmp;
 	int		len;
 
-	d = va_arg(m->arg, int);
+//	d = va_arg(m->arg, int);
 	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
-	dec = ft_itoa(d);
+//	dec = ft_itoa(d);
+	dec = prep_dec(m);
 	if (m->flag.plus == 1)
 		dec = ft_strjoin("+", dec);
 	if (m->flag.space == 1)
@@ -314,7 +339,7 @@ void	check_flag(const char *fmt, t_env *m)
 			m->flag.zero = 1;
 		if (ft_strchr(&fmt[m->i], ' '))
 			m->flag.space = 1;
-		m->i++;
+		//m->i++;
 		//printf("fmt[%d] = %c\n", m->i, fmt[m->i]);
 	}
 }
@@ -322,17 +347,18 @@ void	check_flag(const char *fmt, t_env *m)
 void	check_precision(const char *fmt, t_env *m)
 {
 	m->i++;
-	while (fT_strchr(WIDTH, fmt[m->i]))
+	if (ft_strchr(WIDTH, fmt[m->i]))
 	{
-		m->flag.precision = ft_atoi(fmt[m->i]);
-		m->i++;
+		m->flag.precision = ft_atoi(&fmt[m->i]);
+		while (fmt[m->i] >= '0' && fmt[m->i] <= '9')
+			m->i++;
 	}
 }
 
-void	check_length(const char *fmt, t_env *m)
+/*void	check_length(const char *fmt, t_env *m)
 {
 
-}
+}*/
 
 void	init_env(t_env *m)
 {
@@ -343,6 +369,7 @@ void	init_env(t_env *m)
 	m->flag.hash = 0;
 	m->flag.zero = 0;
 	m->flag.space = 0;
+	m->flag.precision = 0;
 }
 
 int		ft_printf(const char *fmt, ...)
@@ -359,14 +386,15 @@ int		ft_printf(const char *fmt, ...)
 		if (fmt[m.i] == '%' && fmt[(m.i) + 1] != '%')
 		{
 			check_flag(fmt, &m);
-			while (ft_strchr(WIDTH, fmt[m.i]))
+			if (ft_strchr(WIDTH, fmt[m.i]))
 			{
 				m.flag.width = ft_atoi(&fmt[m.i]);
-				m.i++;
+				while (fmt[m.i] >= '0' && fmt[m.i] <= '9')
+					m.i++;
 			}
 			if (fmt[m.i] == '.')
 				check_precision(fmt, &m);
-			check_length(fmt, &m);
+			//check_length(fmt, &m);
 			check_specifier(fmt, &m);
 		}
 		if (ft_strchr(&fmt[m.i], '\n'))

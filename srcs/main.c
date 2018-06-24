@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 16:09:01 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/21 19:33:44 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/23 20:05:25 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,22 @@ int		main(void)
 //	printf("% 8d\n", 123);
 //	printf("% 8d\n", -123);
 
-	printf("%.20d\n", 123);
-	printf("%.20d\n", -123);
-	printf("%-2.20d\n", 123);
-	printf("%-2.20d\n", -123);
-	printf("%+2.20d\n", 123);
-	printf("%+2.20d\n", -123);
-	printf("%#2.20d\n", 123);
-	printf("%#2.20d\n", -123);
-	printf("%012.20d\n", 123);
-	printf("%012.20d\n", -123);
-	printf("% 12.20d\n", 123);
-	printf("% 12.20d\n", -123);
+	printf("%12.5d\n", 123);
+	printf("%12.5d\n", -123);
+	ft_printf("%12.5d\n", 123);
+	ft_printf("%12.5d\n", -123);
+//	printf("%-12.5d", 123);
+//	printf("sdfsdfsdf\n");
+//	printf("%-12.5d", -123);
+//	printf("sdfsdfsdf\n");
+//	printf("%+2.5d\n", 123);
+//	printf("%+2.5d\n", -123);
+//	printf("%#2.5d\n", 123);
+//	printf("%#2.5d\n", -123);
+//	printf("%012.5d\n", 123);
+//	printf("%012.5d\n", -123);
+//	printf("% 12.5d\n", 123);
+//	printf("% 12.5d\n", -123);
 	ft_putstr("----------------\n");
 //	ft_printf("%u\n", 123);
 //	ft_printf("%u\n", -123);
