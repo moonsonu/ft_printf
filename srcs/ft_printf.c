@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/23 21:22:54 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/24 17:20:19 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,30 @@ void	print_paddr(t_env *m)
 	}
 }
 
+char	*check_sign(t_env *m, char *num)
+{
+	char	*tmp;
+	
+	tmp = num;
+	if (num[0] == '-')
+	{
+		m->sign.neg = 1;
+		m->flag.plus = 0;
+		tmp = ft_strdup(num + 1);
+	}
+	else if (num[0] == '+')
+	{
+		m->sign.pos = 1;
+		tmp = ft_strdup(num + 1);
+	}
+	else
+	{
+		m->sign.neg = 0;
+		m->sign.pos = 0;
+	}
+	return (tmp);
+}
+
 char	*prep_dec(t_env *m)
 {
 	int		d;
@@ -116,8 +140,7 @@ char	*prep_dec(t_env *m)
 
 	d = va_arg(m->arg, int);
 	dec = ft_itoa(d);
-	if (*dec == '-')
-
+	dec = check_sign(m, dec);
 	len = ft_strlen(dec);
 	pre_len = m->flag.precision - len;
 	precision = ft_strnew(pre_len);
@@ -145,6 +168,8 @@ void	print_dec(t_env *m)
 	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
 //	dec = ft_itoa(d);
 	dec = prep_dec(m);
+	m->sign.pos == 1 ? (dec = ft_strjoin("+", dec)) : 0;
+	m->sign.neg == 1 ? (dec = ft_strjoin("-", dec)) : 0;
 	if (m->flag.plus == 1)
 		dec = ft_strjoin("+", dec);
 	if (m->flag.space == 1)
@@ -152,7 +177,13 @@ void	print_dec(t_env *m)
 		if (!ft_strchr(dec, '-'))
 			dec = ft_strjoin(" ", dec);
 	}
-	len = m->flag.width - ft_strlen(dec);
+	if (m->flag.width < m->flag.precision)
+		len = m->flag.width - ft_strlen(dec);
+	else if (m->flag.width > m->flag.precision)
+	{
+		tmp = ' ';
+		len = m->flag.width - ft_strlen(dec);
+	}
 	if (m->flag.minus == 1)
 	{
 		tmp = ' ';
@@ -339,8 +370,7 @@ void	check_flag(const char *fmt, t_env *m)
 			m->flag.zero = 1;
 		if (ft_strchr(&fmt[m->i], ' '))
 			m->flag.space = 1;
-		//m->i++;
-		//printf("fmt[%d] = %c\n", m->i, fmt[m->i]);
+		m->i++;
 	}
 }
 

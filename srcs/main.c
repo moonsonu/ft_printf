@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 16:09:01 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/23 20:05:25 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/24 17:25:55 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,8 @@ int		main(void)
 //	printf("% 8d\n", 123);
 //	printf("% 8d\n", -123);
 
-	printf("%12.5d\n", 123);
-	printf("%12.5d\n", -123);
-	ft_printf("%12.5d\n", 123);
-	ft_printf("%12.5d\n", -123);
+//	printf("%12.5d\n", 123);
+//	printf("%12.5d\n", -123);
 //	printf("%-12.5d", 123);
 //	printf("sdfsdfsdf\n");
 //	printf("%-12.5d", -123);
@@ -69,7 +67,21 @@ int		main(void)
 //	printf("%012.5d\n", -123);
 //	printf("% 12.5d\n", 123);
 //	printf("% 12.5d\n", -123);
-	ft_putstr("----------------\n");
+//	ft_putstr("----------------\n");
+//	ft_printf("%12.5d\n", 123);
+//	ft_printf("%12.5d\n", -123);
+//	ft_printf("%-12.5d", 123);
+//	printf("sdfsdfsdf\n");
+//	ft_printf("%-12.5d", -123);
+//	printf("sdfsdfsdf\n");
+//	ft_printf("%+2.5d\n", 123);
+//	ft_printf("%+2.5d\n", -123);
+//	ft_printf("%#2.5d\n", 123);
+//	ft_printf("%#2.5d\n", -123);
+//	ft_printf("%012.5d\n", 123);
+//	ft_printf("%012.5d\n", -123);
+//	ft_printf("% 12.5d\n", 123);
+//	ft_printf("% 12.5d\n", -123);
 //	ft_printf("%u\n", 123);
 //	ft_printf("%u\n", -123);
 //	ft_printf("%-5u\n", 123);
@@ -83,18 +95,18 @@ int		main(void)
 //	ft_printf("% 5u\n", 123);
 //	ft_printf("% 5u\n", -123);
 
-//	printf("%u\n", 123);
-//	printf("%u\n", -123);
-//	printf("%-5u\n", 123);
-//	printf("%-5u\n", -123);
-//	printf("%+5u\n", 123);
-//	printf("%+5u\n", -123);
-//	printf("%#5u\n", 123);
-//	printf("%#5u\n", -123);
-//	printf("%05u\n", 123);
-//	printf("%05u\n", -123);
-//	printf("% 5u\n", 123);
-//	printf("% 5u\n", -123);
+	printf("%.10u\n", 123);
+	printf("%.10u\n", -123);
+	printf("%-5.10u\n", 123);
+	printf("%-5.10u\n", -123);
+	printf("%+5.10u\n", 123);
+	printf("%+5.10u\n", -123);
+	printf("%#5.10u\n", 123);
+	printf("%#5.10u\n", -123);
+	printf("%05.10u\n", 123);
+	printf("%05.10u\n", -123);
+	printf("% 5.10u\n", 123);
+	printf("% 5.10u\n", -123);
 //	ft_putstr("----------------\n");
 //	ft_printf("%u\n", 123);
 //	ft_printf("%u\n", -123);
@@ -109,18 +121,19 @@ int		main(void)
 //	ft_printf("% 5u\n", 123);
 //	ft_printf("% 5u\n", -123);
 
-//	printf("%o\n", 123);
-//	printf("%o\n", -123);
-//	printf("%-5o\n", 123);
-//	printf("%-5o\n", -123);
-//	printf("%+5o\n", 123);
-//	printf("%+5o\n", -123);
-//	printf("%#5o\n", 123);
-//	printf("%#5o\n", -123);
-//	printf("%05o\n", 123);
-//	printf("%05o\n", -123);
-//	printf("% 5o\n", 123);
-//	printf("% 5o\n", -123);
+	ft_putstr("----------------\n");
+	printf("%.10o\n", 123);
+	printf("%.10o\n", -123);
+	printf("%-5.10o\n", 123);
+	printf("%-5.10o\n", -123);
+	printf("%+5.10o\n", 123);
+	printf("%+5.10o\n", -123);
+	printf("%#5.10o\n", 123);
+	printf("%#5.10o\n", -123);
+	printf("%05.10o\n", 123);
+	printf("%05.10o\n", -123);
+	printf("% 5.10o\n", 123);
+	printf("% 5.10o\n", -123);
 //	ft_putstr("----------------\n");
 //	ft_printf("%o\n", 123);
 //	ft_printf("%o\n", -123);
@@ -135,18 +148,19 @@ int		main(void)
 //	ft_printf("% 5o\n", 123);
 //	ft_printf("% 5o\n", -123);
 
-//	printf("%x\n", 123);
-//	printf("%x\n", -123);
-//	printf("%-5x\n", 123);
-//	printf("%-5x\n", -123);
-//	printf("%+5x\n", 123);
-//	printf("%+5x\n", -123);
-//	printf("%#5x\n", 123);
-//	printf("%#5x\n", -123);
-//	printf("%05x\n", 123);
-//	printf("%05x\n", -123);
-//	printf("% 5x\n", 123);
-//	printf("% 5x\n", -123);
+	ft_putstr("----------------\n");
+	printf("%.10x\n", 123);
+	printf("%.10x\n", -123);
+	printf("%-5.10x\n", 123);
+	printf("%-5.10x\n", -123);
+	printf("%+5.10x\n", 123);
+	printf("%+5.10x\n", -123);
+	printf("%#5.10x\n", 123);
+	printf("%#5.10x\n", -123);
+	printf("%05.10x\n", 123);
+	printf("%05.10x\n", -123);
+	printf("% 5.10x\n", 123);
+	printf("% 5.10x\n", -123);
 //	ft_putstr("----------------\n");
 //	ft_printf("%x\n", 123);
 //	ft_printf("%x\n", -123);

@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 13:38:56 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/21 19:27:19 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/24 16:25:24 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,19 @@ typedef struct		s_flag
 	int				precision;
 }					t_flag;
 
+typedef struct		s_sign
+{
+	int				pos;
+	int				neg;
+}					t_sign;
+
 typedef struct		s_env
 {
 	va_list			arg;
 	int				i;
 	int				result;
 	t_flag			flag;
+	t_sign			sign;
 }					t_env;
 
 void				print_char(t_env *m);
