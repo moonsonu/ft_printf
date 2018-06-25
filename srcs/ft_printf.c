@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:23:50 by ksonu             #+#    #+#             */
-/*   Updated: 2018/06/24 17:20:19 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/06/24 21:28:30 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,9 +164,7 @@ void	print_dec(t_env *m)
 	char	tmp;
 	int		len;
 
-//	d = va_arg(m->arg, int);
 	m->flag.zero == 1 ? (tmp = '0') : (tmp = ' ');
-//	dec = ft_itoa(d);
 	dec = prep_dec(m);
 	m->sign.pos == 1 ? (dec = ft_strjoin("+", dec)) : 0;
 	m->sign.neg == 1 ? (dec = ft_strjoin("-", dec)) : 0;
